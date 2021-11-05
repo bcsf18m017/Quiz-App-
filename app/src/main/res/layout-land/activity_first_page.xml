@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gitBack"
     tools:context=".FirstPage">
 
     <Button
@@ -13,7 +12,7 @@
         android:layout_height="70dp"
         android:text="Go to Repository"
         android:textSize="20dp"
-        android:background="@color/orange"
+        android:background="@drawable/backwithborder"
         app:layout_constraintBottom_toTopOf="@+id/learn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -28,7 +27,7 @@
         android:layout_marginBottom="144dp"
         android:text="Learn"
         android:textSize="20dp"
-        android:background="@color/purple_200"
+        android:background="@drawable/backwithborder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -40,7 +39,7 @@
         android:layout_height="64dp"
         android:text="Take Quiz"
         android:textSize="20dp"
-        android:background="@color/purple_200"
+        android:background="@drawable/backwithborder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -50,12 +49,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="235dp"
-        android:layout_height="405dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="241dp"
+        android:layout_height="411dp"
         android:scaleType="fitStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/repo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
