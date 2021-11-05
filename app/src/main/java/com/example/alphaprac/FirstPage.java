@@ -18,6 +18,7 @@ public class FirstPage extends AppCompatActivity{
         setContentView(R.layout.activity_first_page);
         btn=(Button)findViewById(R.id.repoLink);
         btn1=(Button)findViewById(R.id.learn);
+        btn2=(Button)findViewById(R.id.quiz);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,6 +31,13 @@ public class FirstPage extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(FirstPage.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(FirstPage.this,QuizPage.class);
                 startActivity(intent);
             }
         });

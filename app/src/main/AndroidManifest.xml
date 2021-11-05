@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.alphaprac">
+    package="com.example.alphaprac" >
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,10 @@
         android:label="Kids ABC"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" >
+        <activity
+            android:name=".QuizPage"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -17,7 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".FirstPage"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
