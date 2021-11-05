@@ -7,7 +7,7 @@
     tools:context=".FirstPage">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/repoLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Go to Repository"
@@ -15,23 +15,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.228" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/learn"
         android:layout_width="126dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="32dp"
         android:text="Learn"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintEnd_toStartOf="@+id/quiz"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/quiz"
         android:layout_width="125dp"
         android:layout_height="64dp"
         android:layout_marginEnd="44dp"
@@ -39,7 +39,7 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/learn"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
@@ -47,9 +47,9 @@
         android:layout_width="407dp"
         android:layout_height="517dp"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:srcCompat="@drawable/repo"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
