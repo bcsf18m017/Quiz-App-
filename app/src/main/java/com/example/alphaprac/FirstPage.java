@@ -37,8 +37,8 @@ public class FirstPage extends AppCompatActivity{
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(FirstPage.this,QuizPage.class);
-                startActivity(intent);
+                BottomSheet bs=new BottomSheet();
+                bs.show(getSupportFragmentManager(),bs.getTag());
             }
         });
 
