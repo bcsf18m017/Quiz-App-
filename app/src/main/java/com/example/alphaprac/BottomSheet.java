@@ -5,10 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -68,9 +71,14 @@ public class BottomSheet extends BottomSheetDialogFragment {
         View rootView = inflater.inflate(R.layout.fragment_bottom_sheet, container, false);
         Intent intent = new Intent(getActivity(), QuizPage.class);
         Button button = (Button)rootView.findViewById(R.id.submit);
+        EditText text=(EditText)rootView.findViewById(R.id.editTextTextPersonName);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(intent);
+                if (!text.getText().toString().equals("")) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(),"Please Enter Your Name",Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return rootView;

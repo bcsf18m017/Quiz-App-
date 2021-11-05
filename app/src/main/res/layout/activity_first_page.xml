@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstPage"
-    android:background="@color/black">
+    tools:context=".FirstPage">
 
     <Button
         android:id="@+id/repoLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
+        android:background="@drawable/backwithborder"
         android:text="Go to Repository"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +26,7 @@
         android:layout_height="64dp"
         android:layout_marginBottom="32dp"
         android:text="Learn"
-        android:background="@color/purple_200"
+        android:background="@drawable/backwithborder"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/quiz"
@@ -45,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/learn"
         app:layout_constraintVertical_bias="0.0"
-        android:background="@color/purple_200"/>
+        android:background="@drawable/backwithborder"/>
 
     <ImageView
         android:id="@+id/imageView"
