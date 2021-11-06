@@ -2,8 +2,13 @@ package com.example.alphaprac;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +18,7 @@ public class QuizPage extends AppCompatActivity {
 
 
 
-
+    TextView name;
     String questions[],keys[],answers[],options[];
     int randomGenerated[];
     int randomIndex=0;
@@ -24,6 +29,9 @@ public class QuizPage extends AppCompatActivity {
         setContentView(R.layout.activity_quiz_page2);
         list=new ArrayList<Integer>();
         list.add(0);
+        name=(TextView)findViewById(R.id.name);
+        Intent intent=getIntent();
+        name.setText(name.getText().toString()+intent.getStringExtra("Username"));
         setQuestions();
         setOptions();
         setKeys();

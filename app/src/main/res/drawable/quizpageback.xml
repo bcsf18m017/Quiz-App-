@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle"
-    
-    >
-    <size android:height="2dp" />
-    <corners android:radius="200dp" />
-    <solid android:color="@color/green" />
-</shape>
+<selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android" tools:ignore="StateListReachable">
+
+
+
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:startColor="@color/purple_200"
+                android:endColor="@color/orange"
+                android:angle="0"
+                android:type="linear"/>
+            <size android:height="10dp" android:width="25dp"/>
+            <corners android:bottomLeftRadius="150dp"
+                android:bottomRightRadius="150dp" />
+
+        </shape>
+
+    </item>
+
+</selector>

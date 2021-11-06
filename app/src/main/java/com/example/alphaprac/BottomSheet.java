@@ -75,6 +75,7 @@ public class BottomSheet extends BottomSheetDialogFragment {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!text.getText().toString().equals("")) {
+                    intent.putExtra("Username",text.getText().toString());
                     startActivity(intent);
                 } else {
                     Toast.makeText(getContext(),"Please Enter Your Name",Toast.LENGTH_SHORT).show();
