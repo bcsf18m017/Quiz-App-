@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstPage">
+    tools:context=".FirstPage"
+    android:background="@color/blue">
 
     <Button
         android:id="@+id/repoLink"
@@ -48,12 +49,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="407dp"
-        android:layout_height="517dp"
+        android:layout_width="414dp"
+        android:layout_height="516dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/repo"/>
+        app:srcCompat="@drawable/repo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
