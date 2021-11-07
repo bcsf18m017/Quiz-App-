@@ -72,8 +72,7 @@ public class resultActivity extends AppCompatActivity {
             intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
             intent.setType("image/png");
             String subject="Quiz App";
-            intent.putExtra(Intent.EXTRA_TEXT,"PlayStore Link:https://play.google.com/store/apps/details?id="+getPackageName());
-
+            intent.putExtra(Intent.EXTRA_TEXT,"Woo Hoo ! Here is my score\nCome Play With Me");
             intent.putExtra(Intent.EXTRA_SUBJECT, subject);
             startActivity(Intent.createChooser(intent,"Share Via"));
         }
@@ -81,7 +80,6 @@ public class resultActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-
     }
     @SuppressLint("ResourceAsColor")
     private Bitmap getBitmap(View view)
