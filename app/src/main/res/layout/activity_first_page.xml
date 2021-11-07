@@ -11,7 +11,7 @@
         android:id="@+id/repoLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/backwithborder"
+        android:background="@drawable/roundedborders"
         android:text="Go to Repository"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +27,7 @@
         android:layout_height="64dp"
         android:layout_marginBottom="32dp"
         android:text="Learn"
-        android:background="@drawable/backwithborder"
+        android:background="@drawable/roundedborders"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/quiz"
@@ -45,7 +45,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/learn"
         app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/backwithborder"/>
+        android:background="@drawable/roundedborders"/>
 
     <ImageView
         android:id="@+id/imageView"
