@@ -11,42 +11,45 @@
         android:id="@+id/imageView2"
         android:layout_width="363dp"
         android:layout_height="316dp"
-        android:layout_marginBottom="468dp"
         android:scaleType="centerCrop"
         android:src="@drawable/quizlogo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="298dp"
         android:layout_height="67dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="131dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/backwithborder"
         android:ems="10"
-        android:paddingLeft="15dp"
         android:hint="   Enter Your Name"
         android:inputType="textPersonName"
+        android:paddingLeft="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/submit"
-        android:layout_width="match_parent"
-        android:layout_height="66dp"
-        android:layout_marginBottom="260dp"
+        android:layout_width="214dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="77dp"
         android:background="@drawable/backwithborder"
         android:text="Submit"
         android:textColor="@color/green"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.984"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

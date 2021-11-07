@@ -11,46 +11,48 @@
         android:id="@+id/repoLink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:background="@drawable/roundedborders"
         android:text="Go to Repository"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/learn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintVertical_bias="0.231" />
 
     <Button
         android:id="@+id/learn"
         android:layout_width="126dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="32dp"
-        android:text="Learn"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="55dp"
         android:background="@drawable/roundedborders"
+        android:text="Learn"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/quiz"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.413"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repoLink" />
 
     <Button
         android:id="@+id/quiz"
         android:layout_width="125dp"
         android:layout_height="64dp"
         android:layout_marginEnd="44dp"
+        android:background="@drawable/roundedborders"
         android:text="Take Quiz"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/learn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/learn"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@drawable/roundedborders"/>
+        app:layout_constraintTop_toTopOf="@+id/learn" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="414dp"
-        android:layout_height="516dp"
+        android:layout_width="410dp"
+        android:layout_height="466dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

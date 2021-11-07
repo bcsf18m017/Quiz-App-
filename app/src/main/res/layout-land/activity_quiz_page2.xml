@@ -9,16 +9,6 @@
     android:background="@color/blue">
 
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="411dp"
-        android:layout_height="270dp"
-        android:background="@drawable/quizpageback"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -28,15 +18,17 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/question"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.714" />
+        app:layout_constraintVertical_bias="0.16" />
 
     <TextView
         android:id="@+id/question"
         android:layout_width="match_parent"
-        android:layout_height="76dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/roundedborders"
         android:gravity="center"
         android:padding="2dp"
@@ -44,32 +36,32 @@
         android:text='Q:  Alphabet "a" belongs to which category?'
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/option1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.649" />
+        app:layout_constraintTop_toBottomOf="@+id/Finish" />
 
     <Button
         android:id="@+id/option1"
         android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
         android:background="@drawable/roundedborders"
         android:paddingStart="20dp"
         android:text="a) Grass Alphabet"
         android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toStartOf="@+id/option3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question" />
+        app:layout_constraintTop_toBottomOf="@+id/question"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/option2"
         android:layout_width="170dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginStart="108dp"
         android:background="@drawable/roundedborders"
         android:paddingStart="20dp"
@@ -83,8 +75,8 @@
     <Button
         android:id="@+id/option3"
         android:layout_width="170dp"
-        android:layout_height="70dp"
-        android:layout_marginEnd="308dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="356dp"
         android:background="@drawable/roundedborders"
         android:paddingStart="20dp"
         android:text="b) Sky Alphabet"
@@ -97,9 +89,8 @@
     <Button
         android:id="@+id/next"
         android:layout_width="124dp"
-        android:layout_height="62dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:background="@drawable/roundedborders"
         android:text="Next"
         android:textSize="20dp"
@@ -109,7 +100,7 @@
     <Button
         android:id="@+id/Finish"
         android:layout_width="123dp"
-        android:layout_height="72dp"
+        android:layout_height="48dp"
         android:layout_marginStart="476dp"
         android:layout_marginEnd="31dp"
         android:background="@drawable/roundedborders"
