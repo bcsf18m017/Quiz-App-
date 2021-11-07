@@ -1,5 +1,6 @@
 package com.example.alphaprac;
 
+import androidx.annotation.IntegerRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 
@@ -32,14 +34,50 @@ public class QuizPage extends AppCompatActivity {
     ProgressBar bar;
     Button next,finish,option1,option2,option3;
     TextView name,statement;
-    String questions[],keys[],answers[],options[];
-    boolean isAnswered=false;
-    int score=0,count=0,upperBound=25,currentQuestion=0;
+    String[] questions,options;
+    char character='a';
+    int score=0,count=0,upperBound=25,currentQuestion=0,correct=0;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_page2);
+        initializeComponents();
+        finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishButtonClick();
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextButtonClick();
+            }
+        });
+        option1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button1Click();
+            }
+        });
+        option2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button2Click();
+            }
+        });
+        option3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button3Click();
+            }
+        });
+    }
+
+
+    public void initializeComponents()
+    {
         name=(TextView)findViewById(R.id.name);
         statement=(TextView)findViewById(R.id.question);
         next=(Button)findViewById(R.id.next);
@@ -52,193 +90,184 @@ public class QuizPage extends AppCompatActivity {
         name.setText(name.getText().toString()+intent.getStringExtra("Username"));
         setQuestions();
         setOptions();
-        setKeys();
-
         genrateRandom();
         updateQuestion();
+        correct=getCorrectButton();
         swap(currentQuestion,upperBound-count);
         count++;
         final int[] i = {0};
-        timer=new CountDownTimer(132000,7800) {
+        timer=new CountDownTimer(120000,1200) {
             @Override
             public void onTick(long millisUntilFinished) {
                 i[0]++;
                 bar.setProgress((int) i[0]);
             }
-
             @Override
             public void onFinish() {
                 i[0]++;
                 bar.setProgress(100);
                 Dialog dialog=new Dialog(QuizPage.this);
+                dialog.setCanceledOnTouchOutside(false);
                 dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
                 dialog.setContentView(R.layout.timeoutdialog);
                 dialog.show();
                 dialog.findViewById(R.id.goBack).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent=new Intent(QuizPage.this,FirstPage.class);
+                        Intent intent=new Intent(QuizPage.this,resultActivity.class);
+                        intent.putExtra("score",score);
                         startActivity(intent);
+                        finish();
                     }
                 });
             }
         };
         timer.start();
-        finish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(count<25)
-                {
-                    new AlertDialog.Builder(QuizPage.this).setIcon(R.drawable.ic_baseline_warning_24)
-                            .setTitle("You Have Not Answered All The Questions")
-                            .setMessage("Do You Still Want To Proceed")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+    }
+    public void finishButtonClick()
+    {
+        if(count<25)
+        {
+            new AlertDialog.Builder(QuizPage.this).setIcon(R.drawable.ic_baseline_warning_24)
+                    .setTitle("You Have Not Answered All The Questions")
+                    .setMessage("Do You Still Want To Proceed")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
+                            Intent intent=new Intent(QuizPage.this,resultActivity.class);
+                            intent.putExtra("score",score);
+                            startActivity(intent);
+                            finish();
                         }
-                    }).setNeutralButton("Help", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(QuizPage.this,"Press Yes to Exit Quiz",Toast.LENGTH_SHORT).show();
-                        }
-                    }).show();
+                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
                 }
-            }
-        });
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                enable();
-                resetColour();
-                if(count==25)
-                {
-                    Toast.makeText(v.getContext(),"finish",Toast.LENGTH_SHORT).show();
+            }).setNeutralButton("Help", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(QuizPage.this,"Press Yes to Exit Quiz",Toast.LENGTH_SHORT).show();
                 }
-                else
-                {
-                    genrateRandom();
-                    updateQuestion();
-                    swap(currentQuestion,upperBound-count);
-                    count++;
+            }).show();
+        }
+    }
+    public void nextButtonClick()
+    {
+        enable();
+        resetColour();
+        if(count==25)
+        {
+            Intent intent=new Intent(QuizPage.this,resultActivity.class);
+            intent.putExtra("score",score);
+            startActivity(intent);
+            finish();
+        }
+        else
+        {
+            genrateRandom();
+            updateQuestion();
+            correct=getCorrectButton();
+            swap(currentQuestion,upperBound-count);
+            count++;
 
-                }
+        }
+    }
+    public void button1Click()
+    {
+        disable();
+        next.setClickable(true);
+        if(correct==1)
+        {
+            option1.setBackgroundColor(getResources().getColor(R.color.green));
+            score++;
+        }
+        else
+        {
+            if(correct==2)
+            {
+                option1.setBackgroundColor(getResources().getColor(R.color.red));
+                option2.setBackgroundColor(getResources().getColor(R.color.green));
             }
-        });
-        option1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                disable();
-                int correct=getCorrectButton();
-                Log.d("NOMAN",Integer.toString(correct));
-                if(correct==1)
-                {
-                    option1.setBackgroundColor(getResources().getColor(R.color.green));
-                    score++;
-                }
-                else
-                {
-                    if(correct==2)
-                    {
-                        option1.setBackgroundColor(getResources().getColor(R.color.red));
-                        option2.setBackgroundColor(getResources().getColor(R.color.green));
-                    }
-                    else
-                    {
-                        if(correct==3)
-                        {
-                            option1.setBackgroundColor(getResources().getColor(R.color.red));
-                            option3.setBackgroundColor(getResources().getColor(R.color.green));
-                        }
-                    }
-                }
-            }
-        });
-        option2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                disable();
-                int correct=getCorrectButton();
-                Log.d("LOGG",Integer.toString(correct));
-                if(correct==2)
-                {
-                    option2.setBackgroundColor(getResources().getColor(R.color.green));
-                    score++;
-                }
-                else
-                {
-                    if(correct==1)
-                    {
-                        option2.setBackgroundColor(getResources().getColor(R.color.red));
-                        option1.setBackgroundColor(getResources().getColor(R.color.green));
-                    }
-                    else
-                    {
-                        if(correct==3)
-                        {
-                            option2.setBackgroundColor(getResources().getColor(R.color.red));
-                            option3.setBackgroundColor(getResources().getColor(R.color.green));
-                        }
-                    }
-                }
-            }
-        });
-        option3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                disable();
-                int correct=getCorrectButton();
-                Log.d("LOGG",Integer.toString(correct));
+            else
+            {
                 if(correct==3)
                 {
+                    option1.setBackgroundColor(getResources().getColor(R.color.red));
                     option3.setBackgroundColor(getResources().getColor(R.color.green));
-                    score++;
-                }
-                else
-                {
-                    if(correct==2)
-                    {
-                        option3.setBackgroundColor(getResources().getColor(R.color.red));
-                        option2.setBackgroundColor(getResources().getColor(R.color.green));
-                    }
-                    else
-                    {
-                        if(correct==1)
-                        {
-                            option3.setBackgroundColor(getResources().getColor(R.color.red));
-                            option1.setBackgroundColor(getResources().getColor(R.color.green));
-                        }
-                    }
                 }
             }
-        });
+        }
     }
+    public void button2Click()
+    {
+        disable();
+        next.setClickable(true);
+        if(correct==2)
+        {
+            option2.setBackgroundColor(getResources().getColor(R.color.green));
+            score++;
+        }
+        else
+        {
+            if(correct==1)
+            {
+                option2.setBackgroundColor(getResources().getColor(R.color.red));
+                option1.setBackgroundColor(getResources().getColor(R.color.green));
+            }
+            else
+            {
+                if(correct==3)
+                {
+                    option2.setBackgroundColor(getResources().getColor(R.color.red));
+                    option3.setBackgroundColor(getResources().getColor(R.color.green));
+                }
+            }
+        }
+    }
+    public void button3Click()
+    {
+        disable();
+        next.setClickable(true);
 
-
+        if(correct==3)
+        {
+            option3.setBackgroundColor(getResources().getColor(R.color.green));
+            score++;
+        }
+        else
+        {
+            if(correct==2)
+            {
+                option3.setBackgroundColor(getResources().getColor(R.color.red));
+                option2.setBackgroundColor(getResources().getColor(R.color.green));
+            }
+            else
+            {
+                if(correct==1)
+                {
+                    option3.setBackgroundColor(getResources().getColor(R.color.red));
+                    option1.setBackgroundColor(getResources().getColor(R.color.green));
+                }
+            }
+        }
+    }
     public int getCorrectButton()
     {
-        if(option1.getText().toString().equals(keys[currentQuestion]))
+        if(option1.getText().toString().equals(answers(character)))
         {
             return 1;
         }
-        if(option2.getText().toString().equals(keys[currentQuestion]))
+        if(option2.getText().toString().equals(answers(character)))
         {
             return 2;
         }
-        if(option3.getText().toString().equals(keys[currentQuestion]))
+        if(option3.getText().toString().equals(answers(character)))
         {
             return 3;
         }
         return 0;
     }
-
-
     public void updateQuestion()
     {
         statement.setText(questions[currentQuestion]);
@@ -257,7 +286,6 @@ public class QuizPage extends AppCompatActivity {
             option3.setText(options[0]);
         }
     }
-
     public void disable()
     {
         option1.setClickable(false);
@@ -281,13 +309,14 @@ public class QuizPage extends AppCompatActivity {
         String q=questions[i];
         questions[i]=questions[j];
         questions[j]=q;
-    }
-
+   }
     public void genrateRandom()
     {
         Random random=new Random();
         int temp=random.nextInt(upperBound-count);
         currentQuestion=temp;
+        character=getChar();
+        next.setClickable(false);
     }
     public void setOptions()
     {
@@ -309,52 +338,64 @@ public class QuizPage extends AppCompatActivity {
         questions[7]=" Alphabet "+'"'+"h"+'"'+"belongs to Which  Category" ;
         questions[8]=" Alphabet "+'"'+"i"+'"'+"belongs to Which  Category" ;
         questions[9]=" Alphabet "+'"'+"j"+'"'+"belongs to Which  Category" ;
-        questions[10]="Alphabet "+'"'+"k"+'"'+"belongs to Which  Category" ;
-        questions[11]="Alphabet "+'"'+"l"+'"'+"belongs to Which  Category" ;
-        questions[12]="Alphabet "+'"'+"m"+'"'+"belongs to Which  Category" ;
-        questions[13]="Alphabet "+'"'+"n"+'"'+"belongs to Which  Category" ;
-        questions[14]="Alphabet "+'"'+"o"+'"'+"belongs to Which  Category" ;
-        questions[15]="Alphabet "+'"'+"p"+'"'+"belongs to Which  Category" ;
-        questions[16]="Alphabet "+'"'+"q"+'"'+"belongs to Which  Category" ;
-        questions[17]="Alphabet "+'"'+"r"+'"'+"belongs to Which  Category" ;
-        questions[18]="Alphabet "+'"'+"s"+'"'+"belongs to Which  Category" ;
-        questions[19]="Alphabet "+'"'+"t"+'"'+"belongs to Which  Category" ;
-        questions[20]="Alphabet "+'"'+"u"+'"'+"belongs to Which  Category" ;
-        questions[21]="Alphabet "+'"'+"v"+'"'+"belongs to Which  Category" ;
-        questions[22]="Alphabet "+'"'+"w"+'"'+"belongs to Which  Category" ;
-        questions[23]="Alphabet "+'"'+"x"+'"'+"belongs to Which  Category" ;
-        questions[24]="Alphabet "+'"'+"y"+'"'+"belongs to Which  Category" ;
-        questions[25]="Alphabet "+'"'+"z"+'"'+"belongs to Which  Category" ;
+        questions[10]=" Alphabet "+'"'+"k"+'"'+"belongs to Which  Category" ;
+        questions[11]=" Alphabet "+'"'+"l"+'"'+"belongs to Which  Category" ;
+        questions[12]=" Alphabet "+'"'+"m"+'"'+"belongs to Which  Category" ;
+        questions[13]=" Alphabet "+'"'+"n"+'"'+"belongs to Which  Category" ;
+        questions[14]=" Alphabet "+'"'+"o"+'"'+"belongs to Which  Category" ;
+        questions[15]=" Alphabet "+'"'+"p"+'"'+"belongs to Which  Category" ;
+        questions[16]=" Alphabet "+'"'+"q"+'"'+"belongs to Which  Category" ;
+        questions[17]=" Alphabet "+'"'+"r"+'"'+"belongs to Which  Category" ;
+        questions[18]=" Alphabet "+'"'+"s"+'"'+"belongs to Which  Category" ;
+        questions[19]=" Alphabet "+'"'+"t"+'"'+"belongs to Which  Category" ;
+        questions[20]=" Alphabet "+'"'+"u"+'"'+"belongs to Which  Category" ;
+        questions[21]=" Alphabet "+'"'+"v"+'"'+"belongs to Which  Category" ;
+        questions[22]=" Alphabet "+'"'+"w"+'"'+"belongs to Which  Category" ;
+        questions[23]=" Alphabet "+'"'+"x"+'"'+"belongs to Which  Category" ;
+        questions[24]=" Alphabet "+'"'+"y"+'"'+"belongs to Which  Category" ;
+        questions[25]=" Alphabet "+'"'+"z"+'"'+"belongs to Which  Category" ;
     }
-    public void setKeys()
+    public char getChar()
     {
-        keys=new String[26];
-        keys[0]="Grass Alphabet";
-        keys[1]="Sky Alphabet";
-        keys[2]="Grass Alphabet";
-        keys[3]="Sky Alphabet";
-        keys[4]="Grass Alphabet";
-        keys[5]="Sky Alphabet";
-        keys[6]="Root Alphabet";
-        keys[7]="Sky Alphabet";
-        keys[8]="Grass Alphabet";
-        keys[9]="Root Alphabet";
-        keys[10]="Sky Alphabet";
-        keys[11]="Sky Alphabet";
-        keys[12]="Grass Alphabet";
-        keys[13]="Grass Alphabet";
-        keys[14]="Grass Alphabet";
-        keys[15]="Root Alphabet";
-        keys[16]="Root Alphabet";
-        keys[17]="Grass Alphabet";
-        keys[18]="Grass Alphabet";
-        keys[19]="Sky Alphabet";
-        keys[20]="Grass Alphabet";
-        keys[21]="Grass Alphabet";
-        keys[22]="Grass Alphabet";
-        keys[23]="Grass Alphabet";
-        keys[24]="Root Alphabet";
-        keys[25]="Grass Alphabet";
+        char ch='a';
+        ch=questions[currentQuestion].charAt(11);
+        return  ch;
     }
-
+    public String answers(char ch)
+    {
+        switch (ch)
+        {
+            case 'a':
+            case 'c':
+            case 'e':
+            case 'i':
+            case 'm':
+            case 'n':
+            case 'o':
+            case 'r':
+            case 's':
+            case 'u':
+            case 'v':
+            case 'w':
+            case 'x':
+            case 'z':
+                return "Grass Alphabet";
+            case 'b':
+            case 'd':
+            case 'f':
+            case 'h':
+            case 't':
+            case 'k':
+            case 'l':
+                return "Sky Alphabet";
+            case 'g':
+            case 'p':
+            case 'q':
+            case 'j':
+            case 'y':
+                return "Root Alphabet";
+            default:
+                return "";
+        }
+    }
 }

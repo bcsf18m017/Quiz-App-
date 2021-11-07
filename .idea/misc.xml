@@ -18,6 +18,7 @@
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/drawable/optioncolour.xml" value="0.1125" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/drawable/optioncolour1.xml" value="0.16" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/drawable/progressbarbg.xml" value="0.1125" />
+        <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/drawable/progressshape.xml" value="0.1125" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/drawable/quizpageback.xml" value="0.2203125" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/drawable/roundedborders.xml" value="0.1125" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout-land/activity_first_page.xml" value="0.22" />
@@ -25,7 +26,7 @@
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout/activity_first_page.xml" value="0.22" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout/activity_main.xml" value="0.11231884057971014" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout/activity_quiz_page2.xml" value="0.18" />
-        <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout/activity_result.xml" value="0.1" />
+        <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout/activity_result.xml" value="0.18" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout/activity_second_page.xml" value="0.2" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout/content_quiz_page.xml" value="0.11820652173913043" />
         <entry key="..\:/Users/K9181/AndroidStudioProjects/Quiz App/Quiz App/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.17" />

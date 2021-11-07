@@ -31,9 +31,9 @@
             android:textSize="30dp" />
 
         <ImageView
-            android:layout_width="83dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
             android:background="@drawable/timeout" />
 
         <Button
@@ -43,7 +43,7 @@
             android:layout_marginTop="50dp"
             android:background="@drawable/dialogbutton"
             android:fontFamily="@font/aldrich"
-            android:text="Go Back"
+            android:text="Go To Results"
             android:textSize="25dp" />
 
     </LinearLayout>
